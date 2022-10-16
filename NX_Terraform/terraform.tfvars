@@ -1,6 +1,7 @@
 vcsa_hostname = "vcenter.sdn.lab"
 vcsa_username = "podX-admin@hector.lan"
-esxi_hostname = "10.16.1.44"
+esxi_hostname = ""
+esxi_datastore = ""
 
 pod = X
 

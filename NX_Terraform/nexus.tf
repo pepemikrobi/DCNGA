@@ -1,16 +1,17 @@
+# Deploy Cisco Nexus 9300v virtual machine and add serial port using provisioner
 
 data "vsphere_resource_pool" "pool" {
-  name          = "DC_pods"
+  name          = format("pod%s_dcnga", var.pod)
   datacenter_id = data.vsphere_datacenter.datacenter.id
 }
 
 data "vsphere_datastore" "datastore" {
-  name          = "ESX4_2.7T_SSD"
+  name          = var.esxi_datastore
   datacenter_id = data.vsphere_datacenter.datacenter.id
 }
 
 data "vsphere_virtual_machine" "template" {
-  name          = "n9300v"
+  name          = format("pod%s_n9300v_scsi_thin", var.pod)
   datacenter_id = data.vsphere_datacenter.datacenter.id
 }
 
@@ -52,12 +53,8 @@ resource "vsphere_virtual_machine" "nexus" {
 
   disk {
     label            = "disk0"
-    size             = 1
-   # device_address   = ""
-    #controller_type  = "sata"
-    #unit_number      = 1
-    #size = data.vsphere_virtual_machine.template.disks.0.size
-    #thin_provisioned = data.vsphere_virtual_machine.template.disks.0.thin_provisioned
+    size             = 10
+    thin_provisioned = true
   }
 
   extra_config = {
