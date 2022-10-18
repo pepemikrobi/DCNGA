@@ -21,12 +21,12 @@ data "vsphere_network" "net_mgmt" {
 }
 
 data "vsphere_network" "net_eth1" {
-  name          = "${vsphere_host_port_group.pod_portgroups["NX1"].name}"
+  name          = "${vsphere_host_port_group.pod_portgroups["PODX_N1"].name}"
   datacenter_id = data.vsphere_datacenter.datacenter.id
 }
 
 data "vsphere_network" "net_eth2" {
-  name                = "${vsphere_host_port_group.pod_portgroups["NX2"].name}"
+  name                = "${vsphere_host_port_group.pod_portgroups["PODX_N2"].name}"
   datacenter_id = data.vsphere_datacenter.datacenter.id
 }
 

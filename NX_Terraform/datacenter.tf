@@ -1,5 +1,5 @@
 data "vsphere_datacenter" "datacenter" {
-  name = "CSH"
+  name = "PODS"
 }
 
 data "vsphere_host" "esxi_host" {
